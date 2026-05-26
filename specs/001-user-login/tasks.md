@@ -23,7 +23,7 @@ infrastructure (page objects, fixtures) or adds test cases to `tests/login.spec.
 
 **Purpose**: Create the directory structure required by the plan.
 
-- [ ] T001 Create directory structure: `tests/pages/` and `fixtures/` at repo root per `specs/001-user-login/plan.md §Project Structure`
+- [x] T001 Create directory structure: `tests/pages/` and `fixtures/` at repo root per `specs/001-user-login/plan.md §Project Structure`
 
 ---
 
@@ -33,10 +33,10 @@ infrastructure (page objects, fixtures) or adds test cases to `tests/login.spec.
 
 **⚠️ CRITICAL**: No user story tests can be written until this phase is complete.
 
-- [ ] T002 [P] Create `fixtures/users.ts` — export `UserCredentials` interface and `users` constant with `standard`, `locked`, and `invalid` credential sets per `specs/001-user-login/data-model.md §UserCredentials`
-- [ ] T003 [P] Create `tests/pages/LoginPage.ts` — implement `goto()`, `login(username, password)`, `errorMessage()`, `usernameField()`, `passwordField()`, `loginButton()` using `getByRole` locators per `specs/001-user-login/contracts/login-page.md`
-- [ ] T004 [P] Create `tests/pages/InventoryPage.ts` — implement `isAt()` asserting URL contains `/inventory.html`, and `pageTitle()` returning `getByText('Products')` per `specs/001-user-login/contracts/login-page.md §InventoryPage`
-- [ ] T005 Create `tests/login.spec.ts` — add `import` statements for `@playwright/test`, `LoginPage`, `InventoryPage`, and `users`; add top-level `describe('User Login', ...)` block; add `beforeEach` that instantiates `LoginPage` and `InventoryPage` and calls `loginPage.goto()`
+- [x] T002 [P] Create `fixtures/users.ts` — export `UserCredentials` interface and `users` constant with `standard`, `locked`, and `invalid` credential sets per `specs/001-user-login/data-model.md §UserCredentials`
+- [x] T003 [P] Create `tests/pages/LoginPage.ts` — implement `goto()`, `login(username, password)`, `errorMessage()`, `usernameField()`, `passwordField()`, `loginButton()` using `getByRole` locators per `specs/001-user-login/contracts/login-page.md`
+- [x] T004 [P] Create `tests/pages/InventoryPage.ts` — implement `isAt()` asserting URL contains `/inventory.html`, and `pageTitle()` returning `getByText('Products')` per `specs/001-user-login/contracts/login-page.md §InventoryPage`
+- [x] T005 Create `tests/login.spec.ts` — add `import` statements for `@playwright/test`, `LoginPage`, `InventoryPage`, and `users`; add top-level `describe('User Login', ...)` block; add `beforeEach` that instantiates `LoginPage` and `InventoryPage` and calls `loginPage.goto()`
 
 **Checkpoint**: Foundation ready — user story tests can now be added to `tests/login.spec.ts`
 
@@ -52,7 +52,7 @@ infrastructure (page objects, fixtures) or adds test cases to `tests/login.spec.
 
 ### Implementation for User Story 1
 
-- [ ] T006 [US1] Add test `[US1] successful login redirects to inventory page` to `tests/login.spec.ts` — call `loginPage.login(users.standard.username, users.standard.password)`; assert `page.url()` to contain `/inventory.html`; assert `inventoryPage.pageTitle()` to be visible; assert `inventoryPage.pageTitle()` to have text `Products`
+- [x] T006 [US1] Add test `[US1] successful login redirects to inventory page` to `tests/login.spec.ts` — call `loginPage.login(users.standard.username, users.standard.password)`; assert `page.url()` to contain `/inventory.html`; assert `inventoryPage.pageTitle()` to be visible; assert `inventoryPage.pageTitle()` to have text `Products`
 
 **Checkpoint**: US1 fully functional and independently testable — run `npx playwright test --grep "US1"`
 
@@ -68,7 +68,7 @@ infrastructure (page objects, fixtures) or adds test cases to `tests/login.spec.
 
 ### Implementation for User Story 2
 
-- [ ] T007 [US2] Add test `[US2] locked out user sees blocked error message` to `tests/login.spec.ts` — call `loginPage.login(users.locked.username, users.locked.password)`; assert `page.url()` to equal `https://www.saucedemo.com/`; assert `loginPage.errorMessage()` to be visible; assert `loginPage.errorMessage()` to have text `Epic sadface: Sorry, this user has been locked out.`
+- [x] T007 [US2] Add test `[US2] locked out user sees blocked error message` to `tests/login.spec.ts` — call `loginPage.login(users.locked.username, users.locked.password)`; assert `page.url()` to equal `https://www.saucedemo.com/`; assert `loginPage.errorMessage()` to be visible; assert `loginPage.errorMessage()` to have text `Epic sadface: Sorry, this user has been locked out.`
 
 **Checkpoint**: US2 fully functional and independently testable — run `npx playwright test --grep "US2"`
 
@@ -84,8 +84,8 @@ infrastructure (page objects, fixtures) or adds test cases to `tests/login.spec.
 
 ### Implementation for User Story 3
 
-- [ ] T008 [US3] Add test `[US3] valid username with wrong password shows credential mismatch error` to `tests/login.spec.ts` — call `loginPage.login(users.standard.username, 'wrong_pass')`; assert `page.url()` to equal `https://www.saucedemo.com/`; assert `loginPage.errorMessage()` to be visible; assert `loginPage.errorMessage()` to have text `Epic sadface: Username and password do not match any user in this service`
-- [ ] T009 [US3] Add test `[US3] nonexistent username shows credential mismatch error` to `tests/login.spec.ts` — call `loginPage.login(users.invalid.username, users.invalid.password)`; assert `page.url()` to equal `https://www.saucedemo.com/`; assert `loginPage.errorMessage()` to be visible; assert `loginPage.errorMessage()` to have text `Epic sadface: Username and password do not match any user in this service`
+- [x] T008 [US3] Add test `[US3] valid username with wrong password shows credential mismatch error` to `tests/login.spec.ts` — call `loginPage.login(users.standard.username, 'wrong_pass')`; assert `page.url()` to equal `https://www.saucedemo.com/`; assert `loginPage.errorMessage()` to be visible; assert `loginPage.errorMessage()` to have text `Epic sadface: Username and password do not match any user in this service`
+- [x] T009 [US3] Add test `[US3] nonexistent username shows credential mismatch error` to `tests/login.spec.ts` — call `loginPage.login(users.invalid.username, users.invalid.password)`; assert `page.url()` to equal `https://www.saucedemo.com/`; assert `loginPage.errorMessage()` to be visible; assert `loginPage.errorMessage()` to have text `Epic sadface: Username and password do not match any user in this service`
 
 **Checkpoint**: US3 fully functional and independently testable — run `npx playwright test --grep "US3"`
 
@@ -101,9 +101,9 @@ infrastructure (page objects, fixtures) or adds test cases to `tests/login.spec.
 
 ### Implementation for User Story 4
 
-- [ ] T010 [US4] Add test `[US4] empty form submission shows username required error` to `tests/login.spec.ts` — click `loginPage.loginButton()` without filling any fields; assert `page.url()` to equal `https://www.saucedemo.com/`; assert `loginPage.errorMessage()` to be visible; assert `loginPage.errorMessage()` to have text `Epic sadface: Username is required`
-- [ ] T011 [US4] Add test `[US4] username only filled shows password required error` to `tests/login.spec.ts` — fill `loginPage.usernameField()` with `users.standard.username` only; click `loginPage.loginButton()`; assert `page.url()` to equal `https://www.saucedemo.com/`; assert `loginPage.errorMessage()` to be visible; assert `loginPage.errorMessage()` to have text `Epic sadface: Password is required`
-- [ ] T012 [US4] Add test `[US4] password only filled shows username required error` to `tests/login.spec.ts` — fill `loginPage.passwordField()` with `users.standard.password` only; click `loginPage.loginButton()`; assert `page.url()` to equal `https://www.saucedemo.com/`; assert `loginPage.errorMessage()` to be visible; assert `loginPage.errorMessage()` to have text `Epic sadface: Username is required`
+- [x] T010 [US4] Add test `[US4] empty form submission shows username required error` to `tests/login.spec.ts` — click `loginPage.loginButton()` without filling any fields; assert `page.url()` to equal `https://www.saucedemo.com/`; assert `loginPage.errorMessage()` to be visible; assert `loginPage.errorMessage()` to have text `Epic sadface: Username is required`
+- [x] T011 [US4] Add test `[US4] username only filled shows password required error` to `tests/login.spec.ts` — fill `loginPage.usernameField()` with `users.standard.username` only; click `loginPage.loginButton()`; assert `page.url()` to equal `https://www.saucedemo.com/`; assert `loginPage.errorMessage()` to be visible; assert `loginPage.errorMessage()` to have text `Epic sadface: Password is required`
+- [x] T012 [US4] Add test `[US4] password only filled shows username required error` to `tests/login.spec.ts` — fill `loginPage.passwordField()` with `users.standard.password` only; click `loginPage.loginButton()`; assert `page.url()` to equal `https://www.saucedemo.com/`; assert `loginPage.errorMessage()` to be visible; assert `loginPage.errorMessage()` to have text `Epic sadface: Username is required`
 
 **Checkpoint**: All 4 user stories complete — run `npx playwright test` to validate all 7 tests
 
@@ -113,9 +113,9 @@ infrastructure (page objects, fixtures) or adds test cases to `tests/login.spec.
 
 **Purpose**: TypeScript hygiene, full suite verification, and spec traceability review.
 
-- [ ] T013 Run `npx tsc --noEmit` from repo root and fix any TypeScript errors in `tests/` and `fixtures/`
-- [ ] T014 Run `npx playwright test` and confirm all 7 tests pass with zero failures
-- [ ] T015 Review `tests/login.spec.ts` — confirm each test name includes its `[US#]` story label, mapping it to the corresponding acceptance criterion in `specs/001-user-login/spec.md` (constitution Principle IV)
+- [x] T013 Run `npx tsc --noEmit` from repo root and fix any TypeScript errors in `tests/` and `fixtures/`
+- [x] T014 Run `npx playwright test` and confirm all 7 tests pass with zero failures
+- [x] T015 Review `tests/login.spec.ts` — confirm each test name includes its `[US#]` story label, mapping it to the corresponding acceptance criterion in `specs/001-user-login/spec.md` (constitution Principle IV)
 
 ---
 
