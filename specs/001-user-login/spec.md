@@ -24,7 +24,7 @@ redirected to the authenticated dashboard/home page.
 **Why this priority**: Core authentication flow — nothing else is testable without it.
 
 **Independent Test**: Navigate to the login page, submit valid credentials, assert the
-dashboard URL and a user-identifying element are visible.
+inventory page URL (`/inventory.html`) and the "Products" heading are visible.
 
 **Acceptance Scenarios**:
 
@@ -66,13 +66,12 @@ on the login page and a visible error message is present.
 **Acceptance Scenarios**:
 
 1. **Given** a user is on the login page,
-   **When** they submit correct user name wrong_user with an incorrect password wrong_pass,
-   **Then** an error message is displayed, the URL stays on the login page, and no
-   authenticated content is visible.
+   **When** they submit with valid username `standard_user` and wrong password `wrong_pass`,
+   **Then** the error message "Epic sadface: Username and password do not match any user in this service" is displayed, the URL stays on the login page, and no authenticated content is visible.
 
 2. **Given** a user is on the login page,
-   **When** they submit with a username that does not exist "wrong_user" and password "wrong_pass",
-   **Then** a the following error message is shown "Epic sadface: Username and password do not match any user in this service".
+   **When** they submit with a nonexistent username `wrong_user` and password `wrong_pass`,
+   **Then** the error message "Epic sadface: Username and password do not match any user in this service" is shown.
 
 ---
 
@@ -91,16 +90,16 @@ visible and the URL has not changed.
 
 1. **Given** a user is on the login page,
    **When** they submit the form with both fields empty,
-   **Then** validation messages appear for the required fields and the form is not
-   submitted.
+   **Then** the error message "Epic sadface: Username is required" is displayed and
+   the form is not submitted.
 
 2. **Given** a user is on the login page,
    **When** they submit with only the username "standard_user" filled in,
-   **Then** a validation message appears for the password field.
+   **Then** the error message "Epic sadface: Password is required" is displayed.
 
 3. **Given** a user is on the login page,
    **When** they submit with only the password "secret_sauce" filled in and leave the username field empty,
-   **Then** a validation message appears for the username field.
+   **Then** the error message "Epic sadface: Username is required" is displayed.
 ---
 
 ### Edge Cases
@@ -117,8 +116,8 @@ visible and the URL has not changed.
 - **FR-001**: The login page MUST be accessible via a known URL.
 - **FR-002**: The login form MUST contain a username/email field, a password field,
   and a submit button, each identifiable by a semantic role or accessible label.
-- **FR-003**: On successful login, the user MUST be redirected to an authenticated
-  page and a user-identifying element MUST be visible.
+- **FR-003**: On successful login, the user MUST be redirected to `/inventory.html`
+  and the inventory page heading "Products" MUST be visible.
 - **FR-004**: On failed login, an error message MUST be visible and the URL MUST
   remain on the login page.
 - **FR-005**: Empty form submission MUST display at least one accessible validation
@@ -130,8 +129,8 @@ visible and the URL has not changed.
 
 - **LoginPage**: The login page surface — URL, username field, password field,
   submit button, error message area, and validation message areas.
-- **DashboardPage**: The post-login landing page — URL pattern and a visible
-  user-identifying element.
+- **InventoryPage**: The post-login landing page at `/inventory.html` — URL pattern
+  and the "Products" heading element.
 - **TestCredentials**: Valid and invalid credential sets used across test scenarios.
 
 ## Success Criteria *(mandatory)*

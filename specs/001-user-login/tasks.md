@@ -84,8 +84,8 @@ infrastructure (page objects, fixtures) or adds test cases to `tests/login.spec.
 
 ### Implementation for User Story 3
 
-- [ ] T008 [US3] Add test `[US3] invalid credentials show error and URL stays on login page` to `tests/login.spec.ts` — call `loginPage.login(users.invalid.username, users.invalid.password)`; assert `page.url()` to equal `https://www.saucedemo.com/`; assert `loginPage.errorMessage()` to be visible; assert `loginPage.errorMessage()` to have text `Epic sadface: Username and password do not match any user in this service`
-- [ ] T009 [US3] Add test `[US3] non-existent user sees credential mismatch error text` to `tests/login.spec.ts` — call `loginPage.login('wrong_user', 'wrong_pass')`; assert `page.url()` to equal `https://www.saucedemo.com/`; assert `loginPage.errorMessage()` to be visible; assert `loginPage.errorMessage()` to have text `Epic sadface: Username and password do not match any user in this service`
+- [ ] T008 [US3] Add test `[US3] valid username with wrong password shows credential mismatch error` to `tests/login.spec.ts` — call `loginPage.login(users.standard.username, 'wrong_pass')`; assert `page.url()` to equal `https://www.saucedemo.com/`; assert `loginPage.errorMessage()` to be visible; assert `loginPage.errorMessage()` to have text `Epic sadface: Username and password do not match any user in this service`
+- [ ] T009 [US3] Add test `[US3] nonexistent username shows credential mismatch error` to `tests/login.spec.ts` — call `loginPage.login(users.invalid.username, users.invalid.password)`; assert `page.url()` to equal `https://www.saucedemo.com/`; assert `loginPage.errorMessage()` to be visible; assert `loginPage.errorMessage()` to have text `Epic sadface: Username and password do not match any user in this service`
 
 **Checkpoint**: US3 fully functional and independently testable — run `npx playwright test --grep "US3"`
 
@@ -179,4 +179,4 @@ Task T004: "Create tests/pages/InventoryPage.ts"
 - [US#] labels map each test task to its spec.md acceptance criterion
 - Each story checkpoint validates independence before moving to the next
 - `npx playwright test --grep "[US1]"` works because test names include the [US#] label
-- T008 and T009 cover the same US3 scenario from two angles; they share the same error text
+- T008 tests "known user, wrong password"; T009 tests "nonexistent username" — two distinct rejection paths with the same SauceDemo error message
